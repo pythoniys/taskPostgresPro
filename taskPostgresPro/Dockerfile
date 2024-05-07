@@ -6,5 +6,5 @@ WORKDIR /usr/local/src
 #COPY go.mod go.sum ./
 #RUN go mod download
 
-COPY app ./
+COPY cmd/app ./
 RUN go build -o ./bin/app main.go
