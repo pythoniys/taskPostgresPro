@@ -2,6 +2,7 @@ package main
 
 import (
 	config "github.com/pythoniys/taskPostgresPro/internal/config"
+	"github.com/pythoniys/taskPostgresPro/internal/storage/postgres"
 	"log/slog"
 	"os"
 )
@@ -19,8 +20,10 @@ func main() {
 	log.Info("starting server", slog.String("env", cfg.Env))
 	log.Debug("debug messages are enabled")
 
-	//TODO: init storage: postgres
-
+	storage, err := postgres.New(cfg.StoragePath)
+	if err != nil {
+		log.Error("error initializing storage", sl.Err(err))
+	}
 	//TODO: init router: chi render3 (net/http)
 
 	//TODO: run server
